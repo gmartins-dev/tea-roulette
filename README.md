@@ -1,36 +1,226 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tea Roulette 🫖
 
-## Getting Started
+Ever had that awkward moment in the office when everyone's craving tea, but no one wants to make it? Tea Roulette is here to save the day! It's a fun, fair, and simple web app that randomly picks who's making the next round of tea.
 
-First, run the development server:
+![Tea Roulette Demo](public/demo.gif) <!-- TODO deploy at Vercel and maybe a demo video/gif/screenshots -->
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## What's This All About? 🤔
+
+You know how it goes - it's always the same people volunteering to make tea, while others mysteriously disappear when it's tea time. Tea Roulette brings some fun and fairness to the age-old office tea round by:
+
+- 🎲 Randomly selecting who makes the tea
+- 👥 Letting you add or remove people easily
+- 🎮 Making the selection process fun with animations
+- 📱 Working on any device (phones, tablets, computers)
+- ⚡ Being super quick and easy to use
+
+## How to Use It 🚀
+
+1. **Add Your Team**:
+   - Type in everyone's name who wants tea
+   - Click 'Add' or hit Enter to add them to the list
+   - You'll see everyone's name appear as little tags
+
+2. **Pick a Tea Maker**:
+   - Click the big 'Select Tea Maker' button
+   - Watch as it randomly selects someone
+   - The chosen one's name will be highlighted
+   - Time to put the kettle on! ☕
+
+3. **Managing the List**:
+   - Remove someone by clicking the '×' on their name tag
+   - Add new people anytime
+   - Start fresh whenever you want
+
+## Why Use Tea Roulette? 🌟
+
+- ✨ **Fair for Everyone**: No more "I made it last time!" debates
+- 🎯 **Quick Decisions**: No more time wasted deciding who's turn it is
+- 🎮 **Makes it Fun**: Turns a chore into a game
+- 👥 **Team Building**: Great for office morale
+- 🚀 **Super Simple**: No training needed, just add names and go!
+
+## For the Tech-Curious 🤓
+
+If you're interested in the technical details, Tea Roulette is built with:
+
+- Modern web technologies for speed and reliability
+- Beautiful, accessible design that works for everyone
+- Secure and privacy-focused (no data stored)
+- Open source - feel free to peek under the hood!
+
+[Technical details are expanded in the sections below]
+
+## Installation 🛠️
+
+For those who want to run their own version:
+
+1. Clone this project
+2. Run `npm install`
+3. Start it with `npm run dev`
+4. Open `http://localhost:3000` in your browser
+
+## Technical Details 🔧
+
+### Tech Stack & Architecture
+
+- **Frontend Framework**: [Next.js 14](https://nextjs.org/)
+  - Server-side rendering for better performance
+  - App Router for modern routing
+  - React Server Components for optimal loading
+
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+  - Type safety for better development experience
+  - Reduced runtime errors
+  - Better code documentation
+
+- **UI & Styling**:
+  - [Tailwind CSS](https://tailwindcss.com/) for utility-first styling
+  - [shadcn/ui](https://ui.shadcn.com/) components built with:
+    - Radix UI primitives for accessibility
+    - Class Variance Authority for component variants
+    - Tailwind CSS for styling
+  - [Lucide Icons](https://lucide.dev/) for consistent iconography
+  - [Roboto](https://fonts.google.com/specimen/Roboto) font for clean typography
+
+### Features In-Depth
+
+1. **Participant Management**
+   - Dynamic addition/removal of team members
+   - Duplicate name validation
+   - Real-time list updates
+   - Input validation and error handling
+
+2. **Tea Maker Selection**
+   - Randomized selection algorithm
+   - Animated selection process
+   - Toast notifications for results
+   - Minimum participant validation
+
+3. **User Interface**
+   - Responsive design for all screen sizes
+   - Accessible components (ARIA compliant)
+   - Interactive animations and transitions
+   - Clear visual feedback for actions
+
+4. **Performance**
+   - Client-side state management
+   - Optimized bundle size
+   - Fast page loads
+   - No external API dependencies
+
+### Project Structure
+
+```
+tea-roulette/
+├── app/                    # Next.js app directory
+│   ├── layout.tsx         # Root layout with font setup
+│   ├── page.tsx           # Main application page
+│   └── globals.css        # Global styles and Tailwind
+├── components/            # React components
+│   └── ui/               # shadcn/ui components
+│       ├── button.tsx    # Button component
+│       ├── card.tsx      # Card component
+│       ├── input.tsx     # Input component
+│       ├── label.tsx     # Label component
+│       ├── toast.tsx     # Toast notifications
+│       └── use-toast.ts  # Toast hook
+├── lib/                   # Utility functions
+│   └── utils.ts          # Helper functions
+└── public/               # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Running Locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Prerequisites**
+   - Node.js 18.x or later
+   - npm 9.x or later
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Installation**
+   ```bash
+   # Clone the repository
+   git clone https://github.com/yourusername/tea-roulette.git
+   cd tea-roulette
 
-## Learn More
+   # Install dependencies
+   npm install
 
-To learn more about Next.js, take a look at the following resources:
+   # Start development server
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Available Scripts**
+   - `npm run dev` - Start development server
+   - `npm run build` - Build for production
+   - `npm start` - Run production build
+   - `npm run lint` - Run ESLint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Environment Setup**
+   - No environment variables required
+   - Works out of the box
+   - Optional: Configure port via `next.config.js`
 
-## Deploy on Vercel
+### Development Guidelines
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Code Style**
+   - Follow TypeScript best practices
+   - Use functional components
+   - Implement proper error handling
+   - Write meaningful component props
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Component Structure**
+   - Keep components small and focused
+   - Use composition over inheritance
+   - Implement proper prop typing
+   - Follow shadcn/ui patterns
+
+3. **State Management**
+   - Use React hooks for local state
+   - Implement proper error boundaries
+   - Handle loading states
+   - Manage side effects properly
+
+### Future Enhancements
+
+- [ ] Persistent storage for teams
+- [ ] Multiple team support
+- [ ] Tea round history
+- [ ] Statistics dashboard
+- [ ] Custom selection rules
+- [ ] Dark mode support
+- [ ] Team preferences
+- [ ] Export/import functionality
+
+### Performance Considerations
+
+- Optimized bundle size
+- Minimal dependencies
+- Efficient state updates
+- Responsive animations
+- Accessibility compliance
+
+### Contributing Guidelines
+
+1. Fork the repository
+2. Create your feature branch
+3. Follow code style guidelines
+4. Add proper documentation
+5. Submit a pull request
+
+
+## Contributing 🤝
+
+Got ideas to make Tea Roulette even better? We'd love to hear them! Feel free to:
+
+- 🐛 Report bugs
+- 💡 Suggest new features
+- 🎨 Improve the design
+- 📝 Update documentation
+
+## Support & Feedback 💬
+
+Having trouble or got suggestions? We'd love to hear from you:
+
+- 📧 Open an issue on GitHub
+- 🌟 Star the project if you like it
+- 📢 Share it with your team
