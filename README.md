@@ -14,6 +14,53 @@ You know how it goes - it's always the same people volunteering to make tea, whi
 - 📱 Working on any device (phones, tablets, computers)
 - ⚡ Being super quick and easy to use
 
+## Features
+
+- ✨ Dynamic participant management
+  - Add/remove individual participants
+  - Clear all participants at once
+  - Duplicate name validation
+  - Real-time list updates
+- 🎲 Random selection
+  - Fair selection algorithm
+  - Animated result announcement
+  - Minimum 2 participants required
+- 🎨 Modern UI/UX
+  - Dark/Light theme support
+  - Responsive design
+  - Interactive hover effects
+  - Toast notifications
+  - Accessible components
+- 💫 Visual Feedback
+  - Success/Error notifications
+  - Loading states
+  - Hover animations
+  - Theme transitions
+
+## Tech Stack
+
+- **Framework**: [Next.js 14](https://nextjs.org/) (React Framework)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling & Components**:
+  - [Tailwind CSS](https://tailwindcss.com/) for utility-first CSS
+  - [shadcn/ui](https://ui.shadcn.com/) - A collection of re-usable components built with:
+    - [Radix UI](https://www.radix-ui.com/) (for primitive components)
+    - [Tailwind CSS](https://tailwindcss.com/) (for styling)
+    - [Class Variance Authority](https://cva.style/docs) (for component variants)
+  - [Lucide Icons](https://lucide.dev/) for icons
+- **Theme**: [next-themes](https://github.com/pacocoursey/next-themes) for dark/light mode
+- **Font**: [Roboto](https://fonts.google.com/specimen/Roboto) from Google Fonts
+
+## Recent Updates
+
+- 🌓 Added dark/light theme toggle
+- 🎨 Enhanced toast notifications with success variant
+- 🔄 Clear all participants functionality
+- 💅 Improved button hover effects
+- 📱 Better mobile responsiveness
+- 🎯 Enhanced visual feedback for actions
+- ♿ Improved accessibility
+
 ## How to Use It 🚀
 
 1. **Add Your Team**:
@@ -179,6 +226,12 @@ tea-roulette/
    - Implement proper error boundaries
    - Handle loading states
    - Manage side effects properly
+
+4. **Theme Support**
+   - Support both dark and light modes
+   - Use CSS variables for theming
+   - Smooth theme transitions
+   - Consistent color palette
 
 ### Future Enhancements
 
