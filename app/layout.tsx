@@ -2,6 +2,7 @@ import { Roboto } from "next/font/google"
 import "./globals.css"
 import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
+import { ErrorBoundary } from '@/components/error-boundary'
 
 const roboto = Roboto({
   weight: ['400', '500', '700'],
@@ -11,7 +12,7 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: "Tea Roulette",
-  description: "A fun way to decide who makes the tea!",
+  description: "A easy way to decide who makes the tea!",
 }
 
 export default function RootLayout({
@@ -28,7 +29,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <ErrorBoundary>
+            {children}
+          </ErrorBoundary>
         </ThemeProvider>
       </body>
     </html>

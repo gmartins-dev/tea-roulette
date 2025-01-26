@@ -1,0 +1,975 @@
+{
+	"info": {
+		"_postman_id": "540e93a0-1088-4dca-901d-7cf5e035866c",
+		"name": "TeaRoundPickerAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40732136"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "DrinkOrder",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "/v1/DrinkOrder/:id",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/DrinkOrder/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"DrinkOrder",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "<uuid>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/DrinkOrder/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"DrinkOrder",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": \"<uuid>\",\n  \"userId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"additionalSpecification\": {\n    \"culpa_6\": \"<string>\"\n  }\n}"
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/DrinkOrder/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"DrinkOrder",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "/v1/DrinkOrder",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"additionalSpecification\": {\n    \"nostrud_48\": \"<string>\",\n    \"Duisd\": \"<string>\"\n  },\n  \"userId\": \"<uuid>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/DrinkOrder",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"DrinkOrder"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"additionalSpecification\": {\n    \"nostrud_48\": \"<string>\",\n    \"Duisd\": \"<string>\"\n  },\n  \"userId\": \"<uuid>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/DrinkOrder",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"DrinkOrder"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<uuid>\",\n  \"userId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"additionalSpecification\": {\n    \"culpa_6\": \"<string>\"\n  }\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"additionalSpecification\": {\n    \"nostrud_48\": \"<string>\",\n    \"Duisd\": \"<string>\"\n  },\n  \"userId\": \"<uuid>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/DrinkOrder",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"DrinkOrder"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/v1/DrinkOrder",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/DrinkOrder",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"DrinkOrder"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/DrinkOrder",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"DrinkOrder"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"userId\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"type\": \"<string>\",\n    \"additionalSpecification\": {\n      \"eiusmod_37_\": \"<string>\",\n      \"minime8d\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"userId\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"type\": \"<string>\",\n    \"additionalSpecification\": {\n      \"ut_1\": \"<string>\"\n    }\n  }\n]"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/DrinkOrder",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"DrinkOrder"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "DrinkRun",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "/v1/DrinkRun/:id",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/DrinkRun/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"DrinkRun",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "<uuid>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/DrinkRun/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"DrinkRun",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"id\": \"<uuid>\",\n  \"drinkMaker\": {\n    \"id\": \"<uuid>\",\n    \"lastName\": \"<string>\",\n    \"drinkOrders\": [\n      {\n        \"id\": \"<uuid>\",\n        \"userId\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"additionalSpecification\": {\n          \"adipisicinga\": \"<string>\",\n          \"qui69\": \"<string>\"\n        }\n      },\n      {\n        \"id\": \"<uuid>\",\n        \"userId\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"additionalSpecification\": {\n          \"aute253\": \"<string>\"\n        }\n      }\n    ],\n    \"firstName\": \"<string>\"\n  },\n  \"orders\": [\n    {\n      \"id\": \"<uuid>\",\n      \"userId\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"additionalSpecification\": {\n        \"mollit_710\": \"<string>\",\n        \"dolore56\": \"<string>\",\n        \"sunt846\": \"<string>\",\n        \"consequat_a3_\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"userId\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"additionalSpecification\": {\n        \"sint69\": \"<string>\",\n        \"ad_961\": \"<string>\",\n        \"occaecat_13\": \"<string>\"\n      }\n    }\n  ]\n}"
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/DrinkRun/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"DrinkRun",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "/v1/DrinkRun",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"participants\": [\n    {\n      \"userId\": \"<uuid>\"\n    },\n    {\n      \"userId\": \"<uuid>\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/DrinkRun",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"DrinkRun"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"participants\": [\n    {\n      \"userId\": \"<uuid>\"\n    },\n    {\n      \"userId\": \"<uuid>\"\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/DrinkRun",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"DrinkRun"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<uuid>\",\n  \"drinkMaker\": {\n    \"id\": \"<uuid>\",\n    \"lastName\": \"<string>\",\n    \"drinkOrders\": [\n      {\n        \"id\": \"<uuid>\",\n        \"userId\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"additionalSpecification\": {\n          \"adipisicinga\": \"<string>\",\n          \"qui69\": \"<string>\"\n        }\n      },\n      {\n        \"id\": \"<uuid>\",\n        \"userId\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"additionalSpecification\": {\n          \"aute253\": \"<string>\"\n        }\n      }\n    ],\n    \"firstName\": \"<string>\"\n  },\n  \"orders\": [\n    {\n      \"id\": \"<uuid>\",\n      \"userId\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"additionalSpecification\": {\n        \"mollit_710\": \"<string>\",\n        \"dolore56\": \"<string>\",\n        \"sunt846\": \"<string>\",\n        \"consequat_a3_\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"userId\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"additionalSpecification\": {\n        \"sint69\": \"<string>\",\n        \"ad_961\": \"<string>\",\n        \"occaecat_13\": \"<string>\"\n      }\n    }\n  ]\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"participants\": [\n    {\n      \"userId\": \"<uuid>\"\n    },\n    {\n      \"userId\": \"<uuid>\"\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/DrinkRun",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"DrinkRun"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/v1/DrinkRun",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/DrinkRun",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"DrinkRun"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/DrinkRun",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"DrinkRun"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"drinkMaker\": {\n      \"id\": \"<uuid>\",\n      \"lastName\": \"<string>\",\n      \"drinkOrders\": [\n        {\n          \"id\": \"<uuid>\",\n          \"userId\": \"<uuid>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"additionalSpecification\": {\n            \"laborisba\": \"<string>\",\n            \"sit_a6\": \"<string>\",\n            \"in_61d\": \"<string>\",\n            \"mollit_8\": \"<string>\"\n          }\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"userId\": \"<uuid>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"additionalSpecification\": {\n            \"adipisicing_fc\": \"<string>\"\n          }\n        }\n      ],\n      \"firstName\": \"<string>\"\n    },\n    \"orders\": [\n      {\n        \"id\": \"<uuid>\",\n        \"userId\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"additionalSpecification\": {\n          \"enim_6\": \"<string>\"\n        }\n      },\n      {\n        \"id\": \"<uuid>\",\n        \"userId\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"additionalSpecification\": {\n          \"consequat_8\": \"<string>\",\n          \"laborea4\": \"<string>\",\n          \"nisi_9\": \"<string>\"\n        }\n      }\n    ]\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"drinkMaker\": {\n      \"id\": \"<uuid>\",\n      \"lastName\": \"<string>\",\n      \"drinkOrders\": [\n        {\n          \"id\": \"<uuid>\",\n          \"userId\": \"<uuid>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"additionalSpecification\": {\n            \"Ut_\": \"<string>\",\n            \"ad_5\": \"<string>\"\n          }\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"userId\": \"<uuid>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"additionalSpecification\": {\n            \"sunt_f1\": \"<string>\",\n            \"ipsum_5_8\": \"<string>\"\n          }\n        }\n      ],\n      \"firstName\": \"<string>\"\n    },\n    \"orders\": [\n      {\n        \"id\": \"<uuid>\",\n        \"userId\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"additionalSpecification\": {\n          \"in_d\": \"<string>\"\n        }\n      },\n      {\n        \"id\": \"<uuid>\",\n        \"userId\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"additionalSpecification\": {\n          \"ametd\": \"<string>\",\n          \"consequat_b4\": \"<string>\",\n          \"ut05\": \"<string>\"\n        }\n      }\n    ]\n  }\n]"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/DrinkRun",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"DrinkRun"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "/v1/Users/:id",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/Users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"Users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "<uuid>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/v1/Users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"Users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "/v1/Users",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"firstName\": \"Brent\",\n  \"lastName\": \"Geller\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/Users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"Users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/Users",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"Users"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<uuid>\",\n  \"lastName\": \"<string>\",\n  \"drinkOrders\": [\n    {\n      \"id\": \"<uuid>\",\n      \"userId\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"additionalSpecification\": {\n        \"sit_2e5\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"userId\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"additionalSpecification\": {\n        \"Duis6fc\": \"<string>\"\n      }\n    }\n  ],\n  \"firstName\": \"<string>\"\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/Users",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"Users"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/v1/Users",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/Users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"Users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/v1/Users",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"Users"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"lastName\": \"<string>\",\n    \"drinkOrders\": [\n      {\n        \"id\": \"<uuid>\",\n        \"userId\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"additionalSpecification\": {\n          \"elit4d\": \"<string>\"\n        }\n      },\n      {\n        \"id\": \"<uuid>\",\n        \"userId\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"additionalSpecification\": {\n          \"in_17\": \"<string>\"\n        }\n      }\n    ],\n    \"firstName\": \"<string>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"lastName\": \"<string>\",\n    \"drinkOrders\": [\n      {\n        \"id\": \"<uuid>\",\n        \"userId\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"additionalSpecification\": {\n          \"Ut_27\": \"<string>\",\n          \"enim_b_\": \"<string>\"\n        }\n      },\n      {\n        \"id\": \"<uuid>\",\n        \"userId\": \"<uuid>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"additionalSpecification\": {\n          \"sint_7\": \"<string>\",\n          \"est_659\": \"<string>\"\n        }\n      }\n    ],\n    \"firstName\": \"<string>\"\n  }\n]"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/"
+		}
+	]
+}

@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:16.0-bookworm
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: elephant
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db_net
+    restart: unless-stopped
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  api:
+    image: nisienai/tea-round-picker:latest
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__TeaRoundPickerDb: Host=db;Port=5432;Database=tea_round_picker;Username=postgres;Password=elephant;
+      ASPNETCORE_URLS: http://0.0.0.0:8794
+      Cors__Origins: "http://localhost:3000"
+      Cors__Methods: "GET,POST,PUT,DELETE,OPTIONS"
+      Cors__Headers: "Accept,Content-Type,Origin"
+      Cors__AllowCredentials: "false"
+      Cors__ExposedHeaders: "*"
+      Cors__MaxAge: "86400"
+    ports:
+      - 8794:8794
+    restart: unless-stopped
+    networks:
+      - db_net
+
+networks:
+  db_net:
+    driver: bridge
+
+volumes:
+  db_data:
