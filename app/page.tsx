@@ -21,13 +21,10 @@ export default function TeaRoulette() {
   const [currentRun, setCurrentRun] = useState<DrinkRun | null>(null)
   const [isSpinning, setIsSpinning] = useState(false)
   const [selectedUser, setSelectedUser] = useState<User | null>(null)
-  const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(true)
+  const { toast } = useToast()
+  const canStartRun = selectedUsers.length >= 2
 
-  const canStartRun = selectedUsers.length >= 2 &&
-    selectedUsers.every(userId =>
-      users.find(u => u.id === userId)?.drinkOrders?.length > 0
-    )
 
   useEffect(() => {
     loadUsers()
