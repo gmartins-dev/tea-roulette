@@ -93,7 +93,7 @@ export default function TeaRoulette() {
               <div className="flex-1">
                 <Label className="flex items-center gap-2">
                   <Users2 className="h-4 w-4" />
-                  Participants
+                  Add Tea Makers
                 </Label>
                 <div className="mt-2">
                   <AddUserForm onUserAdded={loadUsers} />
@@ -105,7 +105,7 @@ export default function TeaRoulette() {
               <div className="flex justify-between items-center">
                 <Label className="text-base flex items-center gap-2">
                   <Coffee className="h-4 w-4" />
-                  Selected Participants
+                  Select Participants
                 </Label>
                 {selectedUsers.length > 0 && (
                   <Button

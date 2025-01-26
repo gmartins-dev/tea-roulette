@@ -5,13 +5,7 @@ import { apiClient } from '@/lib/api-client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog'
+import { Plus, Coffee } from 'lucide-react'
 
 interface AddUserFormProps {
   onUserAdded: () => void
@@ -20,16 +14,21 @@ interface AddUserFormProps {
 export function AddUserForm({ onUserAdded }: AddUserFormProps) {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [isOpen, setIsOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
+
+  const isValid = firstName.trim() !== '' && lastName.trim() !== ''
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+
+    if (!isValid) return
+
+    setIsLoading(true)
     try {
-      await apiClient.createUser(firstName, lastName)
+      await apiClient.createUser(firstName.trim(), lastName.trim())
       setFirstName('')
       setLastName('')
-      setIsOpen(false)
       onUserAdded()
       toast({
         title: 'Success',
@@ -41,32 +40,41 @@ export function AddUserForm({ onUserAdded }: AddUserFormProps) {
         description: 'Failed to add user',
         variant: 'destructive',
       })
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger id="add-user-dialog">Add User</DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Add New User</DialogTitle>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <Input
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-          <Input
-            placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-          <Button type="submit" className="w-full">Add User</Button>
-        </form>
-      </DialogContent>
-    </Dialog>
+    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
+      <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <Input
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          disabled={isLoading}
+          required
+        />
+        <Input
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          disabled={isLoading}
+          required
+        />
+      </div>
+      <Button
+        type="submit"
+        size="icon"
+        disabled={!isValid || isLoading}
+        className="min-w-10 w-full sm:w-auto"
+      >
+        {isLoading ? (
+          <Coffee className="h-4 w-4 animate-spin" />
+        ) : (
+          <Plus className="h-4 w-4" />
+        )}
+      </Button>
+    </form>
   )
 }
