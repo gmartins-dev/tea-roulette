@@ -30,23 +30,30 @@ class ApiClient {
    * @returns Promise with the typed response data
    */
   private async fetchApi<T>(url: string, options: RequestInit = {}): Promise<T> {
-    const response = await fetch(url, {
-      ...options,
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        ...options.headers,
-      },
-    });
+    try {
+      const response = await fetch(url, {
+        ...options,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          ...options.headers,
+        },
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (!response.ok) {
-      const errorResponse = data as ApiErrorResponse;
-      throw new Error(errorResponse.detail || 'API request failed');
+      if (!response.ok) {
+        const errorResponse = data as ApiErrorResponse;
+        throw new Error(errorResponse.detail || `API request failed: ${response.status}`);
+      }
+
+      return (data as ApiSuccessResponse<T>).data;
+    } catch (error) {
+      if (error instanceof Error) {
+        throw error;
+      }
+      throw new Error('Network error occurred');
     }
-
-    return (data as ApiSuccessResponse<T>).data;
   }
 
   /**
@@ -77,13 +84,14 @@ class ApiClient {
    * @param userIds - Array of user IDs participating in the run
    */
   async createDrinkRun(userIds: string[]): Promise<DrinkRun> {
+    if (!userIds.length || userIds.length < 2) {
+      throw new Error('At least two participants are required');
+    }
+
     const participants = userIds.map(userId => ({ userId }));
 
     return this.fetchApi<DrinkRun>(`${this.baseUrl}/v1/DrinkRun`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify({ participants }),
     });
   }
@@ -93,6 +101,10 @@ class ApiClient {
    * @param order - The drink order details
    */
   async createDrinkOrder(order: CreateDrinkOrderRequest): Promise<DrinkOrder> {
+    if (!order.userId || !order.type || !order.name) {
+      throw new Error('Missing required fields for drink order');
+    }
+
     return this.fetchApi<DrinkOrder>(`${this.baseUrl}/v1/DrinkOrder`, {
       method: 'POST',
       body: JSON.stringify(order),

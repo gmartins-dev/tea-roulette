@@ -3,6 +3,7 @@ import "./globals.css"
 import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ErrorBoundary } from '@/components/error-boundary'
+import { TooltipProvider } from "@/components/ui/tooltip"
 
 const roboto = Roboto({
   weight: ['400', '500', '700'],
@@ -29,9 +30,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ErrorBoundary>
-            {children}
-          </ErrorBoundary>
+          <TooltipProvider>
+            <ErrorBoundary>
+              {children}
+            </ErrorBoundary>
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
