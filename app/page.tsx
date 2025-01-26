@@ -12,11 +12,14 @@ import { apiClient } from '@/lib/api-client'
 import { cn } from '@/lib/utils'
 import { User, DrinkRun } from '@/types/api'
 import { AddUserForm } from '@/components/add-user-form'
+import { DrinkOrderForm } from '@/components/drink-order-form'
 
 export default function TeaRoulette() {
   const [users, setUsers] = useState<User[]>([])
   const [selectedUsers, setSelectedUsers] = useState<string[]>([])
   const [currentRun, setCurrentRun] = useState<DrinkRun | null>(null)
+  const [isSpinning, setIsSpinning] = useState(false)
+  const [selectedUser, setSelectedUser] = useState<User | null>(null)
   const { toast } = useToast()
 
   useEffect(() => {
@@ -44,32 +47,48 @@ export default function TeaRoulette() {
     )
   }
 
+  const handleUserClick = (user: User) => {
+    if (!user.drinkOrders?.length) {
+      // If user has no drink order, show the form
+      setSelectedUser(user)
+    } else {
+      // If user has a drink order, allow selection
+      toggleUserSelection(user.id)
+    }
+  }
+
   async function handleCreateRun() {
-    if (selectedUsers.length === 0) {
+    if (selectedUsers.length < 2) {
       toast({
         title: 'Error',
-        description: 'Please select at least one participant',
+        description: 'Please select at least two participants',
         variant: 'destructive',
       })
       return
     }
 
+    setIsSpinning(true)
     try {
-      const run = await apiClient.createDrinkRun(
-        selectedUsers.map(userId => ({ userId }))
-      )
+      const run = await apiClient.createDrinkRun(selectedUsers)
+
+      // Add a small delay for animation effect
+      await new Promise(resolve => setTimeout(resolve, 1000))
+
       setCurrentRun(run)
       setSelectedUsers([])
       toast({
-        title: 'Success!',
+        title: '🎉 We have a winner!',
         description: `${run.drinkMaker.firstName} ${run.drinkMaker.lastName} will make the drinks!`,
       })
     } catch (error) {
+      console.error('Error creating drink run:', error)
       toast({
         title: 'Error',
-        description: 'Failed to create drink run',
+        description: error instanceof Error ? error.message : 'Failed to create drink run',
         variant: 'destructive',
       })
+    } finally {
+      setIsSpinning(false)
     }
   }
 
@@ -120,26 +139,37 @@ export default function TeaRoulette() {
                 )}
               </div>
               <div className="flex flex-wrap gap-2 min-h-[100px] p-4 rounded-lg border bg-muted/50">
-                {users.length === 0 ? (
-                  <p className="text-sm text-muted-foreground w-full text-center">
-                    Add some tea enthusiasts to get started! ☕
-                  </p>
-                ) : (
-                  users.map((user) => (
-                    <div
-                      key={user.id}
-                      className={`flex items-center justify-between p-3 rounded-lg border cursor-pointer ${
-                        selectedUsers.includes(user.id) ? 'bg-primary/10 border-primary' : 'bg-card'
-                      }`}
-                      onClick={() => toggleUserSelection(user.id)}
-                    >
+                {users.map((user) => (
+                  <div
+                    key={user.id}
+                    onClick={() => handleUserClick(user)}
+                    className={cn(
+                      "flex items-center justify-between p-3 rounded-lg border cursor-pointer",
+                      !user.drinkOrders?.length && "opacity-50",
+                      selectedUsers.includes(user.id) && "bg-primary/10 border-primary"
+                    )}
+                  >
+                    <div className="flex flex-col">
                       <span>{user.firstName} {user.lastName}</span>
-                      {selectedUsers.includes(user.id) && (
-                        <X className="h-4 w-4 text-primary" />
+                      {user.drinkOrders?.[0] && (
+                        <span className="text-sm text-muted-foreground">
+                          {user.drinkOrders[0].type}
+                          {user.drinkOrders[0].additionalSpecification?.notes &&
+                            ` - ${user.drinkOrders[0].additionalSpecification.notes}`
+                          }
+                        </span>
+                      )}
+                      {!user.drinkOrders?.length && (
+                        <span className="text-sm text-muted-foreground">
+                          Click to set drink preference
+                        </span>
                       )}
                     </div>
-                  ))
-                )}
+                    {selectedUsers.includes(user.id) && (
+                      <X className="h-4 w-4 text-primary" />
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -159,27 +189,58 @@ export default function TeaRoulette() {
           <CardFooter className="flex flex-col gap-3">
             <Button
               onClick={handleCreateRun}
-              className="w-full relative overflow-hidden group"
+              className={cn(
+                "w-full relative overflow-hidden group",
+                isSpinning && "animate-pulse"
+              )}
               size="lg"
-              disabled={selectedUsers.length === 0}
+              disabled={selectedUsers.length < 2 || isSpinning}
             >
               <span className="relative z-10 flex items-center gap-2">
                 <Coffee className={cn(
                   "h-5 w-5 transition-all",
-                  "group-hover:rotate-12"
+                  isSpinning ? "animate-spin" : "group-hover:rotate-12"
                 )} />
-                Spin the Tea Wheel
+                {isSpinning ? "Choosing Tea Master..." : "Spin the Tea Wheel"}
               </span>
               <div className="absolute inset-0 bg-primary/10 group-hover:bg-primary/20 transition-colors" />
             </Button>
             {selectedUsers.length === 1 && (
               <p className="text-sm text-muted-foreground text-center">
-                Add 1 more tea maker to start
+                Add at least one more tea maker to start
+              </p>
+            )}
+            {selectedUsers.length === 0 && (
+              <p className="text-sm text-muted-foreground text-center">
+                Select some tea makers to begin
               </p>
             )}
           </CardFooter>
         </Card>
       </div>
+      {selectedUser && (
+        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-card p-6 rounded-lg shadow-lg max-w-md w-full space-y-4">
+            <h2 className="text-lg font-semibold">
+              Set Drink Preference for {selectedUser.firstName}
+            </h2>
+            <DrinkOrderForm
+              user={selectedUser}
+              onOrderCreated={() => {
+                setSelectedUser(null)
+                loadUsers()
+              }}
+            />
+            <Button
+              variant="ghost"
+              onClick={() => setSelectedUser(null)}
+              className="w-full mt-2"
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
+      )}
       <Toaster />
     </main>
   )

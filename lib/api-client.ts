@@ -6,6 +6,13 @@ import {
   ApiSuccessResponse
 } from '@/types/api';
 
+interface CreateDrinkOrderRequest {
+  userId: string;
+  name: string;
+  type: string;
+  additionalSpecification?: Record<string, string>;
+}
+
 /**
  * Client for interacting with the Tea Round Picker API
  */
@@ -46,7 +53,8 @@ class ApiClient {
    * Gets all users from the system
    */
   async getUsers(): Promise<User[]> {
-    return this.fetchApi<User[]>(`${this.baseUrl}/v1/Users`);
+    const response = await this.fetchApi<User[]>(`${this.baseUrl}/v1/Users`);
+    return response;
   }
 
   /**
@@ -57,18 +65,37 @@ class ApiClient {
   async createUser(firstName: string, lastName: string): Promise<User> {
     return this.fetchApi<User>(`${this.baseUrl}/v1/Users`, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({ firstName, lastName }),
     });
   }
 
   /**
    * Creates a new drink run with the given participants
-   * @param participants - Array of user IDs participating in the run
+   * @param userIds - Array of user IDs participating in the run
    */
-  async createDrinkRun(participants: { userId: string }[]): Promise<DrinkRun> {
+  async createDrinkRun(userIds: string[]): Promise<DrinkRun> {
+    const participants = userIds.map(userId => ({ userId }));
+
     return this.fetchApi<DrinkRun>(`${this.baseUrl}/v1/DrinkRun`, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({ participants }),
+    });
+  }
+
+  /**
+   * Creates a new drink order for a user
+   * @param order - The drink order details
+   */
+  async createDrinkOrder(order: CreateDrinkOrderRequest): Promise<DrinkOrder> {
+    return this.fetchApi<DrinkOrder>(`${this.baseUrl}/v1/DrinkOrder`, {
+      method: 'POST',
+      body: JSON.stringify(order),
     });
   }
 }
