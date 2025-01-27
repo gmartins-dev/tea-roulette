@@ -5,9 +5,9 @@ It's a fun, fair, and simple web app that randomly picks who's making the next r
 
 ## What's This All About? 🤔
 
-You know how it goes - it's always the same people volunteering to make tea, while others mysteriously disappear when it's tea time. Tea Roulette brings some fun and fairness to the age-old office tea round by:
+You know how it goes - it's always the same people volunteering to make drinks, while others mysteriously disappear when it's drinks time. Drink Runner Roulette brings some easy way and fairness to the age-old office drink round by:
 
-- 🎲 Randomly selecting who makes the tea
+- 🎲 Randomly selecting who makes the drinks
 - 👥 Letting you add or remove people easily
 - 📱 Working on any device (phones, tablets, computers)
 - ⚡ Being super quick and easy to use
@@ -93,7 +93,7 @@ You know how it goes - it's always the same people volunteering to make tea, whi
    # Install dependencies
    npm install
 
-   # Start the API (in brent-work directory)
+   # Start the API (in docker directory)
    cd docker
    docker compose up -d
 
@@ -161,7 +161,7 @@ tea-roulette/
 
 The application integrates with the your own API, which provides:
 - User management
-- Random tea maker selection
+- Random drink runnner selection
 - Drink run tracking
 - Persistent data storage
 
