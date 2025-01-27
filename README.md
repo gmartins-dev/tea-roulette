@@ -1,6 +1,17 @@
 # Drink Runner Roulette 🫖
 
-A fun and fair way to decide who makes the drinks in your office! Built with Next.js and integrated with the API.
+Ever had that awkward moment in the office when everyone's craving tea, but no one wants to make it? Tea Roulette is here to save the day! It's a fun, fair, and simple web app that randomly picks who's making the next round of tea.
+
+![Tea Roulette Demo](public/demo.gif) <!-- TODO deploy at Vercel and maybe a demo video/gif/screenshots -->
+
+## What's This All About? 🤔
+
+You know how it goes - it's always the same people volunteering to make tea, while others mysteriously disappear when it's tea time. Tea Roulette brings some fun and fairness to the age-old office tea round by:
+
+- 🎲 Randomly selecting who makes the tea
+- 👥 Letting you add or remove people easily
+- 📱 Working on any device (phones, tablets, computers)
+- ⚡ Being super quick and easy to use
 
 ## Features
 

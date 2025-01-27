@@ -68,3 +68,5 @@ export async function PUT(req: NextRequest) {
     body: JSON.stringify(body),
   });
 }
+
+export { proxyRequest };
