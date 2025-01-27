@@ -12,8 +12,8 @@ const roboto = Roboto({
 })
 
 export const metadata: Metadata = {
-  title: "Tea Roulette",
-  description: "A easy way to decide who makes the tea!",
+  title: "Drink Runner Roulette",
+  description: "A easy way to decide who makes the drinks!",
 }
 
 export default function RootLayout({

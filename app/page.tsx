@@ -15,7 +15,7 @@ import { AddUserForm } from '@/components/add-user-form'
 import { DrinkOrderForm } from '@/components/drink-order-form'
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip'
 
-export default function TeaRoulette() {
+export default function DrinkRunnerRoulette() {
   const [users, setUsers] = useState<User[]>([])
   const [selectedUsers, setSelectedUsers] = useState<string[]>([])
   const [currentRun, setCurrentRun] = useState<DrinkRun | null>(null)
@@ -138,11 +138,11 @@ export default function TeaRoulette() {
         <Card className="border-2 shadow-lg backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="text-2xl md:text-3xl font-bold text-center flex items-center justify-center gap-2">
-              Tea Roulette
+              Drink Runner Roulette
               <Coffee className="h-6 w-6 animate-spin" />
             </CardTitle>
             <CardDescription className="text-center text-sm md:text-base">
-              Cross your fingers and spin the wheel of tea-making destiny!
+              Cross your fingers and spin the wheel!
             </CardDescription>
           </CardHeader>
 
@@ -151,7 +151,7 @@ export default function TeaRoulette() {
               <div className="flex-1">
                 <Label className="flex items-center gap-2">
                   <Users2 className="h-4 w-4" />
-                  Add Tea Makers
+                  Add participants
                 </Label>
                 <div className="mt-2">
                   <AddUserForm onUserAdded={loadUsers} />
@@ -177,14 +177,14 @@ export default function TeaRoulette() {
                   </Button>
                 )}
               </div>
-              <div className="flex flex-wrap gap-2 min-h-[100px] p-4 rounded-lg border bg-muted/50">
+              <div className="flex flex-wrap gap-2 min-h-[100px] p-4 rounded-lg border bg-muted/50 items -center justify-center">
                 {isLoading ? (
                   <div className="w-full h-[100px] flex items-center justify-center">
                     <Coffee className="h-6 w-6 animate-spin text-muted-foreground" />
                   </div>
                 ) : users.length === 0 ? (
                   <div className="w-full h-[100px] flex items-center justify-center text-muted-foreground">
-                    No tea makers yet. Add some above!
+                    No drink makers yet. Add some above!
                   </div>
                 ) : (
                   users.map((user) => (
@@ -245,7 +245,7 @@ export default function TeaRoulette() {
                 <div className="relative">
                   <div className="absolute inset-0 bg-primary/5 animate-pulse rounded-lg" />
                   <Coffee className="h-12 w-12 mx-auto mb-2 animate-bounce text-primary" />
-                  <p className="text-lg font-medium">Today's Tea Master:</p>
+                  <p className="text-lg font-medium">Today's Drink Runner:</p>
                   <p className="text-3xl font-bold text-primary mt-2">
                     {currentRun.drinkMaker.firstName} {currentRun.drinkMaker.lastName}
                   </p>
@@ -285,18 +285,18 @@ export default function TeaRoulette() {
                   "h-5 w-5 transition-all",
                   isSpinning ? "animate-spin" : "group-hover:rotate-12"
                 )} />
-                {isSpinning ? "Choosing Tea Master..." : "Spin the Tea Wheel"}
+                {isSpinning ? "Choosing Drink Runner..." : "Spin the Drink Runner Wheel"}
               </span>
               <div className="absolute inset-0 bg-primary/10 group-hover:bg-primary/20 transition-colors" />
             </Button>
             {selectedUsers.length === 1 && (
               <p className="text-sm text-muted-foreground text-center">
-                Add at least one more tea maker to start
+                Add at least one more drink runner to start
               </p>
             )}
             {selectedUsers.length === 0 && (
               <p className="text-sm text-muted-foreground text-center">
-                Select some tea makers to begin
+                Select some drink runners to begin
               </p>
             )}
           </CardFooter>

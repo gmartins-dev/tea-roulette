@@ -110,11 +110,11 @@ export function AddUserForm({ onUserAdded }: AddUserFormProps) {
 
       toast({
         title: 'Success',
-        description: 'Tea maker added successfully',
+        description: 'Drink runner added successfully',
       })
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Failed to add tea maker'
-      console.error('Error adding tea maker:', error)
+      const errorMessage = error instanceof Error ? error.message : 'Failed to add drink runner'
+      console.error('Error adding drink runner:', error)
       toast({
         title: 'Error',
         description: errorMessage,
@@ -216,7 +216,7 @@ export function AddUserForm({ onUserAdded }: AddUserFormProps) {
         ) : (
           <>
             <Plus className="h-4 w-4 mr-2" />
-            Add Tea Maker
+            Add participant to the list
           </>
         )}
       </Button>
