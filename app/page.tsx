@@ -8,9 +8,9 @@ import { Toaster } from "@/components/ui/toaster"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Trash2, Coffee, Users2, X, Plus } from 'lucide-react'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { apiClient } from '@/lib/api-client'
-import { cn } from '@/lib/utils'
-import { User, DrinkRun } from '@/types/api'
+import { apiClient } from '@/app/api/api-client'
+import { cn } from '@/lib/utils/tailwind-merge'
+import { User, DrinkRun } from '@/app/api/api-client.types'
 import { AddUserForm } from '@/components/add-user-form'
 import { DrinkOrderForm } from '@/components/drink-order-form'
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip'
@@ -66,16 +66,6 @@ export default function DrinkRunnerRoulette() {
         ? prev.filter(id => id !== userId)
         : [...prev, userId]
     )
-  }
-
-  const handleUserClick = (user: User) => {
-    if (!user.drinkOrders?.length) {
-      // If user has no drink order, show the form
-      setSelectedUser(user)
-    } else {
-      // If user has a drink order, allow selection
-      toggleUserSelection(user.id)
-    }
   }
 
   async function handleCreateRun() {
@@ -151,7 +141,7 @@ export default function DrinkRunnerRoulette() {
               <div className="flex-1">
                 <Label className="flex items-center gap-2">
                   <Users2 className="h-4 w-4" />
-                  Add participants
+                  Add Participants
                 </Label>
                 <div className="mt-2">
                   <AddUserForm onUserAdded={loadUsers} />

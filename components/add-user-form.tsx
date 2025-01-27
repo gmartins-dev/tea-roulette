@@ -1,14 +1,14 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { apiClient } from '@/lib/api-client'
+import { apiClient } from '@/app/api/api-client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import { Plus, Coffee } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/tailwind-merge'
 import React from 'react'
 
 interface AddUserFormProps {
@@ -193,7 +193,6 @@ export function AddUserForm({ onUserAdded }: AddUserFormProps) {
         </div>
       </div>
 
-      {/* Validation message with dynamic styling */}
       {!isValid && getValidationMessage() && (
         <p className={cn(
           "text-sm",

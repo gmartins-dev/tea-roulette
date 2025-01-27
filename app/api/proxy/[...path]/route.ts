@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ApiErrorResponse } from '@/types/api';
+import { ApiErrorResponse } from '@/app/api/api-client.types';
 
 async function proxyRequest(
   apiUrl: string,

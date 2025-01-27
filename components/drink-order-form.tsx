@@ -6,8 +6,8 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
 import { useToast } from '@/components/ui/use-toast'
-import { apiClient } from '@/lib/api-client'
-import { User } from '@/types/api'
+import { apiClient } from '@/app/api/api-client'
+import { User } from '@/app/api/api-client.types'
 
 interface DrinkOrderFormProps {
   user: User;

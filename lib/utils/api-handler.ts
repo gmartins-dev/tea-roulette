@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { ErrorResponse } from '@/types/api';
+import { ErrorResponse } from '@/app/api/api-client.types';
 
 export function createApiHandler(handler: (req: Request) => Promise<NextResponse>) {
   return async (request: Request) => {

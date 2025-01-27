@@ -2,7 +2,7 @@
 
 import { Component, ErrorInfo, ReactNode } from 'react'
 import { Button } from './ui/button'
-import { ApiErrorResponse } from '@/types/api'
+import { ApiErrorResponse } from '@/app/api/api-client.types'
 
 interface Props {
   children?: ReactNode

@@ -4,7 +4,7 @@ import {
   DrinkRun,
   ApiErrorResponse,
   ApiSuccessResponse
-} from '@/types/api';
+} from '@/app/api/api-client.types';
 
 interface CreateDrinkOrderRequest {
   userId: string;
