@@ -42,11 +42,34 @@ You know how it goes - it's always the same people volunteering to make tea, whi
   - User-friendly error messages
   - Automatic retries
 
+## Demo
+
+<p  align="center">
+  <h5 align="center">🖥 Desktop:</h5>
+  <kbd>
+<img width="100%" style="border-radius: 5px" height="70%" src="public/demo/dark-screen1.png" alt="Dark Mode Screenshot 1">
+</kbd>
+  <kbd>
+<img width="100%" style="border-radius: 5px" height="70%" src="public/demo/light-screen2.png" alt="Light Mode Screenshot 2">
+</kbd>
+</p>
+  <h5 align="center">📱 Mobile:</h5>
+<p  align="center">
+<kbd>
+<img width="600" style="border-radius: 5px" height="100%" src="public/demo/mobile-dark.png" alt="Mobile Dark Mode Screenshot">
+</kbd>
+<kbd>
+<img width="600" style="border-radius: 5px" height="100%" src="public/demo/mobile-light.png" alt="Mobile Light Mode Screenshot">
+</kbd>
+</p>
+
+- 💻 See more screenshots [here](https://github.com/gmartins-dev/tea-roulette/tree/master/public/demo)
+
 ## Tech Stack
 
 - **Framework**: [Next.js 14](https://nextjs.org/) (React Framework)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **API Integration**: Nisien Tea Round Picker API
+- **API Integration**: C# .NET API
 - **Styling & Components**:
   - [Tailwind CSS](https://tailwindcss.com/) for utility-first CSS
   - [shadcn/ui](https://ui.shadcn.com/) - A collection of re-usable components
@@ -84,13 +107,27 @@ You know how it goes - it's always the same people volunteering to make tea, whi
 
 3. **Open** `http://localhost:3000` in your browser
 
-## API Integration
+## Project Structure
 
-The application integrates with the your own API, which provides:
-- User management
-- Random tea maker selection
-- Drink run tracking
-- Persistent data storage
+tea-roulette/
+├── app/                          # Main application files
+│   ├── api/                      # API routes and handlers
+│   ├── layout.tsx                # Main layout component
+│   └── page.tsx                  # Main page component
+├── components/                   # Reusable UI components
+│   ├── add-user-form.tsx         # Form for adding users
+│   ├── drink-order-form.tsx      # Form for drink orders
+│   └── ui/                       # UI components (buttons, inputs, etc.)
+├── docker/                       # Docker configuration files
+│   └── docker-compose.yml        # Docker Compose file
+├── lib/                          # Utility functions and helpers
+│   └── api-handler.ts            # API handler utility
+├── styles/                       # Global styles
+│   └── globals.css               # Global CSS styles
+├── tests/                        # Test files
+├── .env.local                    # Local environment variables
+├── package.json                  # Project metadata and dependencies
+└── tsconfig.json                 # TypeScript configuration
 
 ## Development Guidelines
 
@@ -117,6 +154,14 @@ The application integrates with the your own API, which provides:
    - CSS variables
    - Smooth transitions
    - Consistent palette
+
+## API Integration
+
+The application integrates with the your own API, which provides:
+- User management
+- Random tea maker selection
+- Drink run tracking
+- Persistent data storage
 
 ## Error Handling
 
