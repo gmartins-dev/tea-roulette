@@ -109,6 +109,7 @@ You know how it goes - it's always the same people volunteering to make tea, whi
 
 ## Project Structure
 
+```
 tea-roulette/
 ├── app/                          # Main application files
 │   ├── api/                      # API routes and handlers
@@ -128,6 +129,7 @@ tea-roulette/
 ├── .env.local                    # Local environment variables
 ├── package.json                  # Project metadata and dependencies
 └── tsconfig.json                 # TypeScript configuration
+```
 
 ## Development Guidelines
 
