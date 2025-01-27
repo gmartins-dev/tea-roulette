@@ -1,6 +1,6 @@
-# Tea Roulette 🫖
+# Drink Runner Roulette 🫖
 
-A fun and fair way to decide who makes the tea in your office! Built with Next.js 14 and integrated with the Nisien Tea Round Picker API.
+A fun and fair way to decide who makes the drinks in your office! Built with Next.js and integrated with the API.
 
 ## Features
 
@@ -61,11 +61,12 @@ A fun and fair way to decide who makes the tea in your office! Built with Next.j
    npm install
 
    # Start the API (in brent-work directory)
-   cd brent-work
+   cd docker
    docker compose up -d
 
    # Create .env.local in root directory
    echo "NEXT_PUBLIC_API_URL=http://localhost:8794" > .env.local
+   echo "API_URL=http://localhost:8794" >> .env.local
 
    # Start the frontend
    npm run dev
@@ -75,7 +76,7 @@ A fun and fair way to decide who makes the tea in your office! Built with Next.j
 
 ## API Integration
 
-The application integrates with the Nisien Tea Round Picker API, which provides:
+The application integrates with the your own API, which provides:
 - User management
 - Random tea maker selection
 - Drink run tracking
@@ -114,22 +115,3 @@ The application includes comprehensive error handling:
 - User-friendly error messages
 - Automatic retries for failed requests
 - Loading states for all async operations
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Follow code style guidelines
-4. Add proper documentation
-5. Submit a pull request
-
-## Environment Setup
-
-Required environment variables:
-```env
-NEXT_PUBLIC_API_URL=http://localhost:8794
-```
-
-## License
-
-[Your chosen license]
