@@ -99,7 +99,6 @@ You know how it goes - it's always the same people volunteering to make drinks, 
 
    # Create .env.local in root directory
    echo "NEXT_PUBLIC_API_URL=http://localhost:8794" > .env.local
-   echo "API_URL=http://localhost:8794" >> .env.local
 
    # Start the frontend
    npm run dev
