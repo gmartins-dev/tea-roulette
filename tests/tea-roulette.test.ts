@@ -1,15 +1,14 @@
-import { TeaRoulette } from '../src/tea-roulette';
-import { User, DrinkOrder, DrinkRun } from '../src/types';
+import { ApiHandler } from '../lib/utils/api-handler';
 
 // Mock fetch globally
 global.fetch = jest.fn();
 
 describe('TeaRoulette API Integration', () => {
-  let teaRoulette: TeaRoulette;
+  let apiHandler: ApiHandler;
   const baseUrl = 'http://localhost:8794';
 
   beforeEach(() => {
-    teaRoulette = new TeaRoulette(baseUrl);
+    apiHandler = new ApiHandler(baseUrl);
     // Clear all mocks before each test
     jest.clearAllMocks();
   });
@@ -34,7 +33,7 @@ describe('TeaRoulette API Integration', () => {
       const mockResponse = { ...newUser, id: '123' };
       mockFetchResponse(mockResponse, 201);
 
-      const response = await teaRoulette.createUser(newUser);
+      const response = await apiHandler.createUser(newUser);
       expect(response).toEqual(mockResponse);
       expect(global.fetch).toHaveBeenCalledWith(
         `${baseUrl}/v1/Users`,
@@ -49,7 +48,7 @@ describe('TeaRoulette API Integration', () => {
       const mockUser = { id: '123', firstName: 'John', lastName: 'Doe' };
       mockFetchResponse(mockUser);
 
-      const user = await teaRoulette.getUser('123');
+      const user = await apiHandler.getUser('123');
       expect(user).toEqual(mockUser);
       expect(global.fetch).toHaveBeenCalledWith(
         `${baseUrl}/v1/Users/123`,
@@ -60,7 +59,7 @@ describe('TeaRoulette API Integration', () => {
     test('should handle non-existent user', async () => {
       mockFetchResponse({ type: 'error', detail: 'User not found' }, 404);
 
-      await expect(teaRoulette.getUser('non-existent-id'))
+      await expect(apiHandler.getUser('non-existent-id'))
         .rejects.toThrow('Resource not found');
     });
   });
@@ -78,13 +77,13 @@ describe('TeaRoulette API Integration', () => {
       };
       mockFetchResponse(mockResponse, 201);
 
-      const drinkRun = await teaRoulette.createDrinkRun(participants);
+      const drinkRun = await apiHandler.createDrinkRun(participants);
       expect(drinkRun).toEqual(mockResponse);
     });
 
     test('should require minimum two participants', async () => {
       const participants = [{ userId: 'user-1' }];
-      await expect(teaRoulette.createDrinkRun(participants))
+      await expect(apiHandler.createDrinkRun(participants))
         .rejects.toThrow('Minimum two participants required');
       expect(global.fetch).not.toHaveBeenCalled();
     });
@@ -97,7 +96,7 @@ describe('TeaRoulette API Integration', () => {
       };
       mockFetchResponse(mockDrinkRun);
 
-      const drinkRun = await teaRoulette.getDrinkRun('123');
+      const drinkRun = await apiHandler.getDrinkRun('123');
       expect(drinkRun).toEqual(mockDrinkRun);
     });
   });
@@ -116,7 +115,7 @@ describe('TeaRoulette API Integration', () => {
       const mockResponse = { ...order, id: '123' };
       mockFetchResponse(mockResponse, 201);
 
-      const response = await teaRoulette.createDrinkOrder(order);
+      const response = await apiHandler.createDrinkOrder(order);
       expect(response).toEqual(mockResponse);
     });
 
@@ -133,7 +132,7 @@ describe('TeaRoulette API Integration', () => {
       };
       mockFetchResponse(mockOrder);
 
-      const order = await teaRoulette.getDrinkOrder('existing-order-id');
+      const order = await apiHandler.getDrinkOrder('existing-order-id');
       expect(order).toEqual(mockOrder);
     });
   });
@@ -142,7 +141,7 @@ describe('TeaRoulette API Integration', () => {
     test('should handle API connection errors', async () => {
       (global.fetch as jest.Mock).mockRejectedValueOnce(new Error('Failed to connect to API'));
 
-      await expect(teaRoulette.getUsers())
+      await expect(apiHandler.getUsers())
         .rejects.toThrow('Failed to connect to API');
     });
 
@@ -151,7 +150,7 @@ describe('TeaRoulette API Integration', () => {
         firstName: '',
         lastName: ''
       };
-      await expect(teaRoulette.createUser(invalidUser))
+      await expect(apiHandler.createUser(invalidUser))
         .rejects.toThrow('Invalid user data');
       expect(global.fetch).not.toHaveBeenCalled();
     });
@@ -162,7 +161,7 @@ describe('TeaRoulette API Integration', () => {
         mockFetchResponse({ type: 'error', detail: 'Rate limit exceeded' }, 429);
       });
 
-      const promises = Array(10).fill(null).map(() => teaRoulette.getUsers());
+      const promises = Array(10).fill(null).map(() => apiHandler.getUsers());
       await expect(Promise.all(promises))
         .rejects.toThrow('Rate limit exceeded');
     });

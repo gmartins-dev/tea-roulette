@@ -1,8 +1,8 @@
-import { TeaRoulette } from '../../src/tea-roulette';
+import { ValidationError } from '@/app/api/api-errors';
 import { setupTestEnv } from '../test-utils';
 
 describe('User Management', () => {
-  const { teaRoulette, mockFetchResponse } = setupTestEnv();
+  const { apiHandler, mockFetchResponse } = setupTestEnv();
 
   describe('User CRUD Operations', () => {
     test('should validate user data before creation', async () => {
@@ -10,13 +10,21 @@ describe('User Management', () => {
         { firstName: '', lastName: 'Doe' },
         { firstName: 'John', lastName: '' },
         { firstName: '   ', lastName: 'Doe' },
-        { firstName: 'John123', lastName: 'Doe' }, // Invalid characters
+        { firstName: 'John123', lastName: 'Doe' },
+        undefined,
+        null,
+        {},
+        { firstName: 'John' },
+        { lastName: 'Doe' }
       ];
 
       for (const invalidUser of invalidCases) {
-        await expect(teaRoulette.createUser(invalidUser))
-          .rejects.toThrow('Invalid user data');
+        await expect(apiHandler.createUser(invalidUser as any))
+          .rejects.toThrowError(ValidationError);
       }
+
+      // Verify no API calls were made
+      expect(fetch).not.toHaveBeenCalled();
     });
 
     test('should update user details', async () => {
@@ -24,7 +32,7 @@ describe('User Management', () => {
       const update = { firstName: 'Johnny' };
       mockFetchResponse({ ...user, ...update }, 200);
 
-      const updated = await teaRoulette.updateUser('123', update);
+      const updated = await apiHandler.updateUser('123', update);
       expect(updated.firstName).toBe('Johnny');
     });
 
@@ -32,7 +40,7 @@ describe('User Management', () => {
       mockFetchResponse({ error: 'User already exists' }, 409);
       const newUser = { firstName: 'John', lastName: 'Doe' };
 
-      await expect(teaRoulette.createUser(newUser))
+      await expect(apiHandler.createUser(newUser))
         .rejects.toThrow('User already exists');
     });
   });

@@ -1,4 +1,4 @@
-import { APIError, ValidationError, NetworkError } from '../../src/errors/api-errors';
+import { APIError, ValidationError, NetworkError } from '../../app/api/api-errors';
 
 describe('API Errors', () => {
   test('APIError should set correct properties', () => {

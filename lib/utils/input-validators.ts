@@ -1,4 +1,4 @@
-import { ValidationError } from '../errors/api-errors';
+import { ValidationError } from '../../app/api/api-errors';
 
 export class InputValidator {
   static validateName(name: string): boolean {
@@ -9,6 +9,25 @@ export class InputValidator {
     if (!this.validateName(firstName) || !this.validateName(lastName)) {
       throw new ValidationError('Invalid user data');
     }
+  }
+
+  static isValidUser(user: any): boolean {
+    if (!user || typeof user !== 'object') {
+      return false;
+    }
+
+    if (typeof user.firstName !== 'string' || typeof user.lastName !== 'string') {
+      return false;
+    }
+
+    const firstName = user.firstName.trim();
+    const lastName = user.lastName.trim();
+
+    if (firstName.length === 0 || lastName.length === 0) {
+      return false;
+    }
+
+    return this.validateName(firstName) && this.validateName(lastName);
   }
 
   static validateParticipants(participants: { userId: string }[]): void {

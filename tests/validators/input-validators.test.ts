@@ -1,5 +1,5 @@
-import { InputValidator } from '../../src/validators/input-validators';
-import { ValidationError } from '../../src/errors/api-errors';
+import { InputValidator } from '../../lib/utils/input-validators';
+import { ValidationError } from '../../app/api/api-errors';
 
 describe('InputValidator', () => {
   describe('Name Validation', () => {

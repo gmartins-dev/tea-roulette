@@ -38,7 +38,10 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/**/*",
-    "tests/**/*"
+    "tests/**/*",
+    "app/errors",
+    "types",
+    "app/validators"
   ],
   "exclude": [
     "node_modules"

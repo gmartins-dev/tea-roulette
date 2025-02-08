@@ -2,7 +2,7 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   testMatch: ['**/tests/**/*.test.ts'],
-  moduleFileExtensions: ['ts', 'js'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coverageThreshold: {
@@ -13,5 +13,13 @@ module.exports = {
       statements: 80
     }
   },
-  coverageReporters: ['text', 'lcov', 'html']
+  coverageReporters: ['text', 'lcov', 'html'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/$1'
+  },
+  transform: {
+    '^.+\\.(ts|tsx)$': ['ts-jest', {
+      tsconfig: 'tsconfig.test.json'
+    }]
+  }
 };

@@ -1,9 +1,7 @@
-import { TeaRoulette } from '../../src/tea-roulette';
 import { setupTestEnv } from '../test-utils';
-import { APIError } from '../../src/errors/api-errors';
 
 describe('API Integration', () => {
-  const { teaRoulette, mockFetchResponse } = setupTestEnv();
+  const { apiHandler, mockFetchResponse } = setupTestEnv();
 
   describe('Error Handling', () => {
     test('should handle API errors with proper status codes', async () => {
@@ -16,14 +14,14 @@ describe('API Integration', () => {
 
       for (const { status, message } of errorCases) {
         mockFetchResponse({ error: message }, status);
-        await expect(teaRoulette.getUsers())
+        await expect(apiHandler.getUsers())
           .rejects.toThrow(message);
       }
     });
 
     test('should handle network errors', async () => {
       (fetch as jest.Mock).mockRejectedValueOnce(new Error('Network error'));
-      await expect(teaRoulette.getUsers())
+      await expect(apiHandler.getUsers())
         .rejects.toThrow('Failed to connect to API');
     });
   });
@@ -32,13 +30,13 @@ describe('API Integration', () => {
     test('should properly parse successful responses', async () => {
       const mockData = { id: '123', name: 'Test' };
       mockFetchResponse(mockData, 200);
-      const result = await teaRoulette.getUser('123');
+      const result = await apiHandler.getUser('123');
       expect(result).toEqual(mockData);
     });
 
     test('should handle empty responses', async () => {
       mockFetchResponse(null, 204);
-      const result = await teaRoulette.getUsers();
+      const result = await apiHandler.getUsers();
       expect(result).toBeNull();
     });
   });
