@@ -1,4 +1,4 @@
-# Drink Runner Roulette 🫖
+# Drink Runner Roulette 🍵
 
 Ever had that awkward moment in the office when everyone's craving a drink, but no one wants to make it? Drink Runner Roulette is here to save the day!
 It's a fun, fair, and simple web app that randomly picks who's making the next round of drinks.
@@ -171,3 +171,41 @@ The application includes comprehensive error handling:
 - User-friendly error messages
 - Automatic retries for failed requests
 - Loading states for all async operations
+
+## Testing
+
+The Tea Roulette application includes comprehensive unit tests covering all major functionality. The tests are written using Jest and can be found in the `tests` directory.
+
+### Test Coverage
+
+The test suite covers the following areas:
+- Random tea selection
+- Tea collection management (adding/removing teas)
+- Tea categorization and filtering
+- User preferences handling
+- History tracking
+- Input validation
+
+### Running Tests
+
+To run the test suite:
+
+```bash
+npm test
+```
+
+To run tests with coverage report:
+
+```bash
+npm test -- --coverage
+```
+
+### Test Structure
+
+The tests are organized into the following test suites:
+- Core functionality tests
+- Tea Management tests
+- Tea Categories tests
+- User Preferences tests
+- History Tracking tests
+- Validation tests
