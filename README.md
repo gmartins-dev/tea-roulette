@@ -87,7 +87,7 @@ You know how it goes - it's always the same people volunteering to make drinks, 
 2. **Installation**
    ```bash
    # Clone the repository
-   git clone https://github.com/yourusername/tea-roulette.git
+   git clone https://github.com/gmartins-dev/tea-roulette
    cd tea-roulette
 
    # Install dependencies
